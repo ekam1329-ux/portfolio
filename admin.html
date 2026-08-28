@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Portal | Ekam Singh Portfolio Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body class="dark-theme admin-body">
+
+  <!-- ADMIN AUTH LOGIN MODAL CONTAINER -->
+  <div id="admin-auth-container" class="admin-auth-wrapper">
+    <div class="glass-card admin-login-card">
+      <div class="admin-brand">
+        <span class="brand-symbol">☬</span>
+        <h2>Ekam Singh Portfolio Admin</h2>
+        <p>Enter administrative credentials to access management dashboard.</p>
+      </div>
+
+      <form id="admin-login-form" class="contact-form">
+        <div class="form-group">
+          <label for="admin-username">Username</label>
+          <input type="text" id="admin-username" required placeholder="admin" autocomplete="username">
+        </div>
+
+        <div class="form-group">
+          <label for="admin-password">Password</label>
+          <input type="password" id="admin-password" required placeholder="••••••••" autocomplete="current-password">
+        </div>
+
+        <button type="submit" class="btn btn-primary full-width">
+          <span>Authenticate Admin</span> ➔
+        </button>
+
+        <div id="login-error" class="form-status" style="color: #ef4444; margin-top: 0.75rem;"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ADMIN DASHBOARD CONTAINER -->
+  <div id="admin-dashboard-container" class="admin-dashboard-wrapper" style="display: none;">
+    
+    <!-- Admin Top Navbar -->
+    <header class="admin-navbar">
+      <div class="admin-nav-container">
+        <div class="nav-brand">
+          <span class="brand-symbol">☬</span>
+          <div class="brand-text">
+            <span class="brand-name">ADMIN CONTROL PANEL</span>
+            <span class="brand-tag">DYNAMIC PORTFOLIO MANAGEMENT</span>
+          </div>
+        </div>
+
+        <div class="admin-nav-actions">
+          <button id="admin-theme-toggle" class="control-btn">
+            <span id="admin-theme-icon">🌙</span> <span id="admin-theme-text">Dark</span>
+          </button>
+          <a href="/index.html" class="btn btn-small btn-glass" target="_blank">View Live Website ↗</a>
+          <button id="admin-logout-btn" class="btn btn-small btn-outline">Logout 🚪</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Admin Main Content -->
+    <main class="container admin-main-content">
+      <div class="admin-layout">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="admin-sidebar glass-card">
+          <ul class="admin-tab-menu">
+            <li class="tab-btn active" data-tab="inbox">
+              <span class="tab-icon">📥</span> Messages Inbox <span id="unread-count-badge" class="unread-badge">0</span>
+            </li>
+            <li class="tab-btn" data-tab="personal">
+              <span class="tab-icon">👤</span> Personal Bio & Details
+            </li>
+            <li class="tab-btn" data-tab="publications">
+              <span class="tab-icon">📚</span> Publications & Articles
+            </li>
+            <li class="tab-btn" data-tab="research">
+              <span class="tab-icon">🔬</span> Research Focus Areas
+            </li>
+            <li class="tab-btn" data-tab="talks">
+              <span class="tab-icon">🎥</span> Talks & YouTube Lectures
+            </li>
+            <li class="tab-btn" data-tab="journey">
+              <span class="tab-icon">🎓</span> Academic Journey
+            </li>
+            <li class="tab-btn" data-tab="conferences">
+              <span class="tab-icon">🏛️</span> Conferences & Webinars
+            </li>
+            <li class="tab-btn" data-tab="settings">
+              <span class="tab-icon">⚙️</span> Settings & Password
+            </li>
+          </ul>
+        </aside>
+
+        <!-- Main Viewport -->
+        <section class="admin-viewport">
+
+          <!-- TAB 1: MESSAGES INBOX -->
+          <div id="tab-inbox" class="admin-tab-content active">
+            <div class="tab-header">
+              <h2>Contact Form Messages Inbox</h2>
+              <button id="clear-messages-btn" class="btn btn-small btn-outline">Clear Inbox</button>
+            </div>
+            <div id="messages-list-container" class="messages-list"></div>
+          </div>
+
+          <!-- TAB 2: PERSONAL BIO & DETAILS EDITOR -->
+          <div id="tab-personal" class="admin-tab-content">
+            <div class="tab-header">
+              <h2>Edit Personal Bio & Contact Info</h2>
+            </div>
+            <div class="glass-card">
+              <form id="edit-personal-form" class="contact-form">
+                <div class="form-group">
+                  <label for="p-name">Full Name</label>
+                  <input type="text" id="p-name" required>
+                </div>
+                <div class="form-group">
+                  <label for="p-title">Academic Title</label>
+                  <input type="text" id="p-title" required>
+                </div>
+                <div class="form-group">
+                  <label for="p-tagline">Hero Tagline</label>
+                  <textarea id="p-tagline" rows="2" required></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="p-qualifications">Qualifications Badge</label>
+                  <input type="text" id="p-qualifications" required>
+                </div>
+                <div class="form-group">
+                  <label for="p-bio1">Biography Paragraph 1</label>
+                  <textarea id="p-bio1" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="p-bio2">Biography Paragraph 2</label>
+                  <textarea id="p-bio2" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="p-quote">Featured Philosophical Quote</label>
+                  <textarea id="p-quote" rows="2" required></textarea>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
+                  <div class="form-group">
+                    <label for="p-email">Email</label>
+                    <input type="email" id="p-email" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="p-phone">Phone</label>
+                    <input type="text" id="p-phone" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="p-location">Location</label>
+                    <input type="text" id="p-location" required>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">Save Personal Info & Bio</button>
+                <div id="personal-save-status" class="form-status" style="margin-top: 0.5rem;"></div>
+              </form>
+            </div>
+          </div>
+
+          <!-- TAB 3: PUBLICATIONS EDITOR -->
+          <div id="tab-publications" class="admin-tab-content">
+            <div class="tab-header">
+              <h2>Manage Publications & Articles</h2>
+              <button id="add-pub-modal-btn" class="btn btn-small btn-primary">+ Add Publication</button>
+            </div>
+            <div id="publications-admin-list" class="admin-items-grid"></div>
+          </div>
+
+          <!-- TAB 4: RESEARCH FOCUS EDITOR -->
+          <div id="tab-research" class="admin-tab-content">
+            <div class="tab-header">
+              <h2>Manage Research Focus Topics</h2>
+              <button id="add-research-modal-btn" class="btn btn-small btn-primary">+ Add Research Topic</button>
+            </div>
+            <div id="research-admin-list" class="admin-items-grid"></div>
+          </div>
+
+          <!-- TAB 5: TALKS & YOUTUBE LECTURES EDITOR -->
+          <div id="tab-talks" class="admin-tab-content">
+            <div class="tab-header">
+              <h2>Manage Talks & YouTube Lectures</h2>
+              <button id="add-talk-modal-btn" class="btn btn-small btn-primary">+ Add Talk / Lecture</button>
+            </div>
+            <div id="talks-admin-list" class="admin-items-grid"></div>
+          </div>
+
+          <!-- TAB 6: ACADEMIC JOURNEY -->
+          <div id="tab-journey" class="admin-tab-content">
+            <div class="tab-header">
+              <h2>Manage Academic Degrees & Faculty Roles</h2>
+              <button id="add-journey-modal-btn" class="btn btn-small btn-primary">+ Add Qualification / Role</button>
+            </div>
+            <div id="journey-admin-list" class="admin-items-grid"></div>
+          </div>
+
+          <!-- TAB 7: CONFERENCES -->
+          <div id="tab-conferences" class="admin-tab-content">
+            <div class="tab-header">
+              <h2>Manage Conferences & Webinars</h2>
+              <button id="add-conf-modal-btn" class="btn btn-small btn-primary">+ Add Conference</button>
+            </div>
+            <div id="conferences-admin-list" class="admin-items-grid"></div>
+          </div>
+
+          <!-- TAB 8: ACCOUNT SETTINGS & DATA RESET -->
+          <div id="tab-settings" class="admin-tab-content">
+            <div class="tab-header">
+              <h2>Admin Password & System Settings</h2>
+            </div>
+            <div class="glass-card" style="max-width: 550px; margin-bottom: 2rem;">
+              <h3>Update Admin Password</h3>
+              <form id="change-password-form" class="contact-form" style="margin-top: 1rem;">
+                <div class="form-group">
+                  <label for="current-pass">Current Password</label>
+                  <input type="password" id="current-pass" required>
+                </div>
+                <div class="form-group">
+                  <label for="new-pass">New Admin Password</label>
+                  <input type="password" id="new-pass" required minlength="6">
+                </div>
+                <button type="submit" class="btn btn-primary">Update Password</button>
+                <div id="password-status" class="form-status" style="margin-top: 0.5rem;"></div>
+              </form>
+            </div>
+
+            <div class="glass-card" style="max-width: 550px; border-color: rgba(239, 68, 68, 0.4);">
+              <h3 style="color: #ef4444;">Reset Portfolio Data</h3>
+              <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 0.5rem 0 1rem 0;">Reset all portfolio content back to initial default CV data.</p>
+              <button id="reset-data-btn" class="btn btn-small btn-outline" style="border-color: #ef4444; color: #ef4444;">Reset To Default CV Data</button>
+            </div>
+          </div>
+
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- ADMIN DYNAMIC FORM MODAL -->
+  <div class="modal-backdrop" id="admin-editor-modal">
+    <div class="modal-content glass-card" style="max-width: 650px;">
+      <button class="modal-close" id="admin-modal-close">&times;</button>
+      <h3 id="admin-modal-title" style="margin-bottom: 1.5rem; color: var(--accent-gold);">Add New Item</h3>
+      <form id="admin-dynamic-form" class="contact-form">
+        <div id="admin-form-fields"></div>
+        <button type="submit" class="btn btn-primary full-width" style="margin-top: 1.25rem;">Save Item</button>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="/src/admin.js"></script>
+</body>
+</html>
